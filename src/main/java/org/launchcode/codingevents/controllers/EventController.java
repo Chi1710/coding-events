@@ -30,6 +30,7 @@ public class EventController {
     public String addCreateEvent(@RequestParam String eventName) {
         events.add(eventName);
         return "redirect:";
+
     }
 
 }
