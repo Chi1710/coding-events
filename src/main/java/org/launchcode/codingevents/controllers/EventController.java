@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
 @RequestMapping("events")
 public class EventController {
 
-    private static List<String> events = new ArrayList<>();
+    private static HashMap<String, String> events = new HashMap<>();
 
     @GetMapping
     public String displayAllEvents(Model model) {
@@ -27,8 +28,8 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String addCreateEvent(@RequestParam String eventName) {
-        events.add(eventName);
+    public String addCreateEvent(@RequestParam String eventName, @RequestParam String eventInfo) {
+        events.put(eventName, eventInfo);
         return "redirect:";
 
     }
