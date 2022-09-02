@@ -47,7 +47,8 @@
         <label>Event Type
             <select th:field="${event.eventType}">
                 <option th:each="type : ${types}"
-                        th:value="${type}" th:text="${type.displayName}">
+                        th:value="${type}"
+                        th:text="${type.displayName}">
                 </option>
             </select>
         </label>
