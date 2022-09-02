@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -18,13 +16,28 @@ public class Event {
     @NotBlank(message = "Email is required.")
     private String contactEmail;
 
+    @NotBlank(message = "Location cannot be blank.")
+    private String location;
+
+    @AssertTrue(message = "This event must have attendees register.")
+    private boolean register = true;
+    @Positive(message = "Number of attendees must be one or more")
+    private int numOfAttendees;
+
+    private EventType eventType;
 
 
-    public Event(String name, String description, String contactEmail) {
+
+    public Event(String name, String description, String contactEmail, String location,
+                  Integer numOfAttendees, EventType type) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.numOfAttendees = numOfAttendees;
+        this.eventType = eventType;
+
     }
 
     public Event() { this.id=nextId; nextId++;}
@@ -51,6 +64,38 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Boolean getRegister() {
+        return register;
+    }
+
+    public void setRegister(Boolean register) {
+        this.register = register;
+    }
+
+    public int getNumOfAttendees() {
+        return numOfAttendees;
+    }
+
+    public void setNumOfAttendees(int numOfAttendees) {
+        this.numOfAttendees = numOfAttendees;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
     }
 
     public int getId() {
